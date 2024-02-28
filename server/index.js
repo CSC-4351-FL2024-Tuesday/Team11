@@ -12,8 +12,9 @@ const corsOptions ={
  }
 app.use(cors(corsOptions)) // Use this after the variable declaration
 app.use(express.json())
+require('dotenv').config();
 
-mongoose.connect('mongodb+srv://pramit25:SfuVHRU3vpChRcHA@cluster0.n4uvlx7.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect(process.env.MONGODB_URI)
 
 app.post('/api/createUser', async (req, res) => {
   try {
