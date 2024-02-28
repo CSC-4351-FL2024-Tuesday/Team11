@@ -1,0 +1,176 @@
+.map_page {
+  margin: 5vh 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  min-height: 80vh;
+  height: fit-content;
+}
+
+.map_and_events {
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  height: fit-content;
+  min-height: 80vh;
+}
+
+.map_title {
+  width: 40vw;
+  font-size: 1.5rem;
+  color: black;
+  font-family: 'Epilogue';
+  font-weight: bold;
+  height: 5vh;
+  display: flex;
+  justify-content: start;
+  padding: 10px 0;
+}
+
+.map_load {
+  width: 40vw;
+  height: 60vh;
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0x solid black;
+  margin-bottom: 5vh;
+}
+
+.all_filters {
+  width: 20vw;
+  height: fit-content;
+}
+
+.map_marker {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  margin-left: 115px;
+  
+  border-radius: 50%;
+  border: 8px solid red;
+  width: 8px;
+  height: 8px;
+}
+
+.map_marker::after {
+  position: absolute;
+  content: '';
+  width: 0px;
+  height: 0px;
+  bottom: -30px;
+  left: -6px;
+  border: 10px solid transparent;
+  border-top: 17px solid red;
+}
+
+SimpleMap {
+  outline: none
+}
+
+SimpleMap:focus {
+  outline: none
+}
+
+.map_class {
+  height: 100%;
+  width: 100%;
+}
+
+.events_stores {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.event_store {
+  width: 40vw;
+  height: 8vh;
+  padding: 1vh 0vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.event_store_img {
+  width: 6vw;
+  margin: 0 1vw;
+  background-image: url("https://i.pinimg.com/originals/dc/66/53/dc6653448a617b0564541708101d3eac.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 15px;  
+}
+
+.event_store_title {
+  width: 28vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  font-family: 'Epilogue';
+}
+
+.event_store_title_name {
+  height: 4vh;
+  text-align: left;
+  font-weight: 500;
+}
+
+.event_store_title_sub {
+  height: 4vh;
+  text-align: left;
+  color: #b69e80;
+}
+
+.event_store_click {
+  width: 4vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+
+
+@media only screen and (max-width: 900px) {
+
+  .map_page {
+    flex-direction: column-reverse;
+    width: 90vw;
+  }
+  
+  .all_filters {
+    width: 90vw;
+  }
+
+  .map_and_events {
+    width: 90vw;
+  }
+  .map_title {
+    width: 90vw;
+  }
+  .map_load {
+    width: 90vw;
+  }
+  .event_store {
+    width: 90vw;
+  }
+
+  .event_store_img {
+    width: 15vw;
+    margin: 0 2.5vw;
+  }
+  .event_store_title {
+    width: 70vw;
+  }
+  .event_store_click {
+    width: 10vw;
+  }
+  
+}

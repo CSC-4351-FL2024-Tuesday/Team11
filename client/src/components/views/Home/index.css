@@ -1,0 +1,318 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.page1 {
+  height: fit-content;
+  background-color: white;
+}
+
+.content {
+  height: fit-content;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: white;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.hero_page {
+  margin: 5vh 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100vw;
+  min-height: 90vh;
+  height: fit-content;
+}
+
+.line {
+  width: 100vw;
+  height: 1px; /* Adjust thickness as needed */
+  background-color: rgb(0 ,0, 0, 0.1); /* Adjust color as needed */
+}
+
+.hero_img {
+  width: 60%;
+  min-height: 40vh;
+  border-radius: 20px;
+  height:fit-content;
+  background-image: url("../../../assets/log.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.dark_layer {
+  position: relative;
+  width: 100%;
+  min-height: 40vh;
+  height:fit-content;
+  border-radius: 20px;
+  background: linear-gradient(
+    to bottom right,
+    rgba(0, 0, 0, 0.5), /* Darker color for edges */
+    rgba(0, 0, 0, 0.6) 100%, /* Semi-transparent color for center */
+    rgba(0, 0, 0, 0.5) /* Darker color for edges */
+  );
+}
+
+.hero_img_content {
+
+  min-height: 20vh;
+  height:fit-content;
+  padding: 10vh 0;
+  width: 100%;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+.hero_img_content_title {
+  color: white;
+  font-family: 'Epilogue';
+  font-weight: bold;
+  font-size: 2rem;
+  width: 40vw;
+}
+
+.hero_img_content_search {
+  margin-top: 25px;
+  color: white;
+  font-family: 'Epilogue';
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+.hero_img_content_search_bar {
+  margin: none;
+  margin-top: 20px;
+  height: 5vh;
+  width: 30vw;
+  outline: none;
+  display: flex;
+  align-items: center;
+  background-color: #f3eee7;
+  border-radius: 15px;
+  padding: 1vh 1vw;
+}
+
+.searchbar {
+  height: 5vh;
+  width: 30vw;
+  resize: none;
+  border-radius: 15px;
+  padding: 0;
+  outline: none !important;
+  border: none;
+  overflow: hidden;
+  overflow-x: auto;
+  text-wrap: nowrap;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  color: #b69e80;
+  background-color: #f3eee7;
+}
+
+.hero2_title {
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 2rem;
+  font-family: 'Epilogue';
+  width: 60vw;
+  height: fit-content;
+  padding: 10px 20px;
+  text-align: left;
+}
+
+.hero2_text {
+  font-weight: 500;
+  font-size: 1rem;
+  font-family: 'Epilogue';
+  width: 60vw;
+  height: fit-content;
+  padding: 10px 20px;
+  text-align: left;  
+}
+
+.local_stores {
+  height: 38vh;
+  padding: 20px;
+  width: 60vw;
+  margin-top: 20px;
+  display: flex;
+  justify-content: left;
+  flex-direction: row;
+  align-items: center;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+    
+}
+
+.local_store_card {
+  overflow: hidden;
+  width: 12vw;
+  height: 38vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+.local_store_card_img {
+  width: 10vw;
+  height: 24vh;
+  border-radius: 20px;
+  background-image: url("https://i.pinimg.com/originals/dc/66/53/dc6653448a617b0564541708101d3eac.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.e {
+  background-image: url("https://images.squarespace-cdn.com/content/v1/59ef9a244c0dbf3814d94d38/f08219b3-e1b9-41d3-9621-d59d8c16914b/bbq+brisket+shot+.jpg");
+}
+.local_store_card_text .t1{
+  width: 10vw;
+  min-height: 7vh;
+  height: fit-content;
+  text-align: left;
+  font-size: 0.9rem;
+  font-family: 'Epilogue';
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.local_store_card_text .t2{
+  width: 10vw;
+  height: fit-content;
+  text-align: left;
+  font-size: 0.8rem;
+  font-family: 'Epilogue';
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  color: #b69e80;
+}
+
+
+@media only screen and (max-width: 900px) {
+  .hero_page {
+    display: flex;
+    flex-direction: column;
+  }    
+
+  .hero_img {
+    width: 90vw;
+  }
+
+  .dark_layer {
+    width: 90vw;
+  }
+
+  .hero_img_content_search_bar {
+    width: 80vw;
+  }
+  
+  .searchbar {
+    width: 80vw;
+  }
+  
+  .hero2_title {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 1.5rem;
+    font-family: 'Epilogue';
+    width: 90vw;
+    height: fit-content;
+    padding: 10px 20px;
+    text-align: left;
+  }
+  
+  .hero2_text {
+    font-weight: 500;
+    font-size: 1rem;
+    font-family: 'Epilogue';
+    width: 90vw;
+    height: fit-content;
+  }
+
+  .local_stores {
+    height: fit-content;
+    padding: 20px;
+    width: 90vw;
+    margin-top: 20px;
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    align-items: center;
+    scrollbar-width: none; /* Firefox */
+    overflow: auto;
+  }
+  
+  .local_store_card {
+    width: 18vw;
+    min-width: 180px;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .local_store_card_img {
+    width: 15vw;
+    height: 18vh;
+    border-radius: 20px;
+    min-width: 150px;
+    background-image: url("https://i.pinimg.com/originals/dc/66/53/dc6653448a617b0564541708101d3eac.gif");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .e {
+    background-image: url("https://images.squarespace-cdn.com/content/v1/59ef9a244c0dbf3814d94d38/f08219b3-e1b9-41d3-9621-d59d8c16914b/bbq+brisket+shot+.jpg");
+  }
+
+  .local_store_card_text .t1{
+    margin-top: 10px;
+    width: 15vw;
+    min-width: 150px;
+    min-height: 5vh;
+    height: fit-content;
+    text-align: left;
+    font-size: 0.9rem;
+    font-family: 'Epilogue';
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+  
+  .local_store_card_text .t2{
+    width: 15vw;
+    height: 3vh;
+    min-width: 150px;
+    text-align: left;
+    font-size: 0.8rem;
+    font-family: 'Epilogue';
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    color: #b69e80;
+  }
+  
+  .hero_img_content_title {
+    width: 80vw;
+  }
+}

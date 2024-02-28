@@ -1,0 +1,195 @@
+.store_form {
+    width: 60vw;
+}
+
+.store_form_first {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+.store_form_label {
+    text-align: left;
+    width: 20%;
+    margin: 2.5%
+}
+
+.store_form_input {
+    padding: 5px;
+    font-size: 1rem;
+    margin: 20px 0;
+    width: 25%;
+}
+
+.store_form_second {
+    display: flex;
+    align-items: center;
+}
+
+.diff {
+    width: 80%;
+}
+
+.subtitle {
+    width: 60vw;
+    font-family: 'Epilogue';
+    text-align: left;
+}
+
+.subtitle_mini {
+    width: 60vw;
+    font-family: 'Epilogue';
+    text-align: left;
+    font-weight: 600;
+}
+
+.products_table {
+    border: 1px solid black;
+    width: 60vw;
+    height: fit-content;
+    border-radius: 15px;
+    
+}
+
+.add_product  {
+    width: 60vw;
+    margin: 20px 0;
+    padding: 10px 0;
+    font-family: 'Epilogue';
+    font-weight: bold;
+    border-radius: 10px;
+
+    border: 1px solid #b69e80;
+    background-color: #f3eee7;  
+    /* background-color: #f1800d; */
+    cursor: pointer;
+}
+
+.store_save_submit  {
+    width: 60vw;
+    margin: 20px 0;
+    padding: 10px 0;
+    font-family: 'Epilogue';
+    font-weight: bold;
+    border-radius: 10px;
+
+    border: 1px solid #b69e80;
+    background-color: #f1800d;
+    cursor: pointer;
+}
+
+.products_table_row {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    height: 10vh;
+    align-items: center;
+}
+
+.product_table_image {
+    height: 9vh;
+    width: 10%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.product_table_iamgeurl
+, .product_table_name {
+    border: 0;
+    height: 7vh;
+    width: 10%;
+    padding: 0;
+    margin: 0;
+    color: black;
+    font-family: 'Epilogue';
+    overflow-x: auto;
+}
+
+.product_table_quantity {
+    border: 0;
+    height: 4vh;
+    width: 10%;
+    padding: 0;
+    margin: 0;
+    color: black;
+    font-family: 'Epilogue';
+    overflow-x: auto;
+}
+
+.product_table_desc {
+    border: 0;
+    height: 4vh;
+    width: 10%;
+    padding: 0;
+    margin: 0;
+    color: black;
+    font-family: 'Epilogue';
+    overflow-x: auto;
+}
+
+.product_table_expiry {
+    border: 0;
+    height: 4vh;
+    width: 10%;
+    padding: 0;
+    color: black;
+    font-family: 'Epilogue';
+    margin: 0;
+    overflow-x: auto;
+}
+
+.product_table_btn {
+    height: 8vh;
+    width: 10%;
+    padding: 0;
+    margin: 0;
+    color: black;
+    font-family: 'Epilogue';
+    background-color: #b69e80;
+    border: 0;
+    border-radius: 15px;
+    color: white;
+
+}
+
+@media only screen and (max-width: 900px) {
+    .store_form_first {
+        flex-direction: column;
+    }   
+
+    .store_form_second {
+        flex-direction: column;
+    }   
+
+    .store_form_input {
+        width: 90%;
+    }
+
+    .store_form_label {
+        width: 90vw;
+        text-align: center;
+    }
+
+    .subtitle {
+        text-align: center;
+    }
+
+    .subtitle_mini {
+        text-align: center;
+    }
+
+    .products_table {
+        width: 90vw;
+
+    }
+    .products_table_row {
+        width: 90vw;
+    }
+}

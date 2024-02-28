@@ -1,0 +1,227 @@
+.dashboard_page {
+    height: fit-content;
+    min-height: 90vh;
+    width: 100vw;
+    margin: 5vh 0;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.dashboard_title {
+    margin: auto;
+    margin-bottom: 5vh;
+    width: 60vw;
+    font-size: 1.5rem;
+    color: black;
+    font-family: 'Epilogue';
+    font-weight: bold;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;      
+}
+
+.dasboard_title_btn {
+    cursor: pointer;
+    border: 1px solid #b69e80;
+    background-color: #f3eee7;
+    padding: 7px;
+    font-size: 0.8rem;
+    border-radius: 15px;
+    margin: 0 5px;
+}
+
+
+.revenue_profit_orders {
+    width: 60vw;
+    height: 10vh;
+    margin: 0 auto 5vh auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.rpo_tile {
+    width: 30%;
+    border: 1px solid #b69e80;
+    height: 10vh;
+    border-radius: 10px;
+    background-color: #f3eee7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+.rpo_tile_1 {
+    height: 6vh;
+    width: 90%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-left: 10%;
+    font-family: 'Epilogue';
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.rpo_tile_2 {
+    height: 4vh;    
+    width: 90%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-left: 10%;
+    font-family: 'Epilogue';
+    font-size:  0.8rem;
+    color: rgb(0, 0, 0, 0.7);
+}
+
+.revenue_and_sales {
+    width: 60vw;
+    min-height: 50vh;
+    height: fit-content;
+    margin: 0 auto 5vh auto;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    overflow: auto;
+}
+
+.ras_tile2 {
+    border: 1px solid red;
+    min-height: 50vh;
+    height: fit-content;
+    border: 1px solid #b69e80;
+    border-radius: 10px;
+    background-color: #f3eee7;
+    width: 48% !important;
+}
+
+.ras_tile {
+    min-height: 50vh;
+    height: fit-content;
+    min-width: fit-content;
+    width: 100%;
+    border: 1px solid #b69e80;
+    border-radius: 10px;
+    background-color: #f3eee7;
+}
+
+.ras_tile_1 {
+    height: 7vh;
+    width: 90%;
+    padding-left: 10%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-family: 'Epilogue';
+    font-size:  1rem;
+    font-weight: bold;
+    color: black;
+}
+
+.ras_tile_2 {
+    height: fit-content;
+    min-height: 43vh;
+}
+
+.top_product_and_top_store {
+    width: 60vw;
+    height: 50vh;
+    margin: auto;
+}
+
+
+@media only screen and (max-width: 900px) {
+    .dashboard_title {
+        width: 90vw;
+    }
+
+    .revenue_profit_orders {
+        width: 90vw;
+    }
+    
+    .revenue_and_sales {
+        width: 90vw;
+        flex-direction: column;
+    }
+    
+    .ras_tile2 {
+        width: 90% !important;
+        margin-bottom: 20px;
+    }
+
+    .top_product_and_top_store {
+        width: 90vw;    
+    }
+}
+
+.table {
+    width: 100%;
+    min-height: 50vh;
+    height: fit-content;
+}
+
+.table_head {
+    font-family: 'Epilogue';
+    font-size: 0.8rem;
+    height: 8vh;
+}
+
+.table_head_h {
+    margin-top: 10px;
+    font-weight: 600;
+    padding: 0 20px;
+    text-align: left;
+}
+
+.table_body {
+    height: fit-content;
+}
+
+.table_body_row {
+    width: 50vw !important;
+    max-height: 10vh;
+    font-family: 'Epilogue';
+    font-size: 0.8rem;
+    border: 1px solid red !important;
+}
+
+.table_body_row:hover {
+    background-color: rgb(0, 0, 0, 0.2);
+}
+
+.table_body_data {
+    padding: 0 20px;
+    text-align: left;
+    color: rgb(0, 0, 0, 0.7)
+}
+
+.table_body_data_btn {
+    margin: 0 20px;
+    background-color: orange;
+    height: fit-content;
+    outline: 0;
+    padding: 7px;
+    border-radius: 15px;
+    font-family: 'Epilogue';
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table_store_name:active {
+    transform: translateY(2px);
+}
+
+.create_store_event {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+}
