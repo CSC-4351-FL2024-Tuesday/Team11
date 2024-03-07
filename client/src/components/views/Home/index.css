@@ -145,7 +145,7 @@ body {
 }
 
 .local_stores {
-  height: 38vh;
+  height: 48vh;
   padding: 20px;
   width: 60vw;
   margin-top: 20px;
@@ -153,19 +153,54 @@ body {
   justify-content: left;
   flex-direction: row;
   align-items: center;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-    
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
 }
 
 .local_store_card {
   overflow: hidden;
-  width: 12vw;
-  height: 38vh;
+  overflow-y: auto;
+  min-width: 12vw;
+  height: 48vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
+}
+
+.like {
+  text-align: left;
+  width: 80%;
+}
+.like-button {
+  width: 90%;
+  height: 30px;
+  background-color: #f3eee7;
+  border-radius: 15px;
+  padding: 1vh 1vw;
+  outline: 0;
+  color: black;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  cursor: pointer;
+  border: 1px solid rgb(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  transition: background-color 0.3s ease;
+}
+
+
+.like-button.liked {
+  background-color: orange; /* Facebook like color */
+  color: #ffffff;
+}
+
+
+.fa-thumbs-up {
+  font-size: 20px;
 }
 
 .local_store_card_img {
@@ -203,8 +238,14 @@ body {
   display: flex;
   align-items: center;
   color: #b69e80;
+  margin: 5px 0;
 }
 
+.e {
+  pointer-events: none; /* Disable pointer events */
+  opacity: 0.5; /* Optional: Reduce opacity to visually indicate disabled state */
+  cursor: not-allowed; /* Optional: Change cursor to not-allowed */
+}
 
 @media only screen and (max-width: 900px) {
   .hero_page {
@@ -248,7 +289,6 @@ body {
   }
 
   .local_stores {
-    height: fit-content;
     padding: 20px;
     width: 90vw;
     margin-top: 20px;
@@ -263,7 +303,6 @@ body {
   .local_store_card {
     width: 18vw;
     min-width: 180px;
-    height: fit-content;
     display: flex;
     justify-content: space-between;
     align-items: center;

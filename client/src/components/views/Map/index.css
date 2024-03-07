@@ -86,10 +86,12 @@ SimpleMap:focus {
   height: 60vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: start;
+
 }
 
 .event_store {
+  margin: 20px 0;
   width: 40vw;
   height: 8vh;
   padding: 1vh 0vw;
@@ -100,6 +102,7 @@ SimpleMap:focus {
 
 .event_store_img {
   width: 6vw;
+  height: 8vh;
   margin: 0 1vw;
   background-image: url("https://i.pinimg.com/originals/dc/66/53/dc6653448a617b0564541708101d3eac.gif");
   background-position: center;
@@ -124,8 +127,11 @@ SimpleMap:focus {
 
 .event_store_title_sub {
   height: 4vh;
+  margin: 4px 0;
+  font-size: 10px;
   text-align: left;
   color: #b69e80;
+  font-weight: bold;
 }
 
 .event_store_click {
@@ -136,7 +142,10 @@ SimpleMap:focus {
   cursor: pointer;
 }
 
-
+.sub_2 {
+  font-size: 10px;
+  color: black
+}
 
 @media only screen and (max-width: 900px) {
 

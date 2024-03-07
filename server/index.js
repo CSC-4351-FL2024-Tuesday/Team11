@@ -191,7 +191,6 @@ app.post('/api/allStoresProductsEvents', async (req, res) => {
     // Iterate over each user
     for (let i = 0; i < users_2.length; i++) {
       const user2 = users_2[i];
-      console.log(user2)
       
       // Iterate over each store of the user
       for (let j = 0; j < user2.events.length; j++) {
@@ -207,6 +206,144 @@ app.post('/api/allStoresProductsEvents', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+
+app.post('/api/updateStoreRevenue', async (req, res) => {
+  try {
+    const { storeName, revenue_to_add } = req.body;
+
+    if (!storeName || !revenue_to_add || isNaN(revenue_to_add)) {
+      return res.status(400).json({ error: "Incomplete or invalid fields" });
+    }
+
+    // Find all users in the database
+    const users = await User.find({}, { stores: 1 });
+
+    // Variable to track if the store was found
+    let storeFound = false;
+
+    // Iterate over each user
+    for (let i = 0; i < users.length; i++) {
+      const user = users[i];
+      
+      // Iterate over each store of the user
+      for (let j = 0; j < user.stores.length; j++) {
+        const store = user.stores[j];
+        
+        if (store.storeName === storeName) {
+          // Update the store's revenue
+          store.storeRevenue = (store.storeRevenue || 0) + parseFloat(revenue_to_add);
+          storeFound = true;
+          break; // Exit the loop since the store was found
+        }
+      }
+
+      if (storeFound) {
+        // Save the updated user object
+        await user.save();
+        return res.json({ message: "Store revenue updated successfully" });
+      }
+    }
+
+    // If the store was not found among all users' stores
+    return res.status(404).json({ error: "Store not found" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+
+app.post('/api/incrementStoreOrder', async (req, res) => {
+  try {
+    const { storeName } = req.body;
+    console.log(storeName)
+    if (!storeName) {
+      return res.status(400).json({ error: "Incomplete fields" });
+    }
+
+    // Find all users in the database
+    const users = await User.find({}, { stores: 1 });
+
+    // Variable to track if the store was found
+    let storeFound = false;
+
+    // Iterate over each user
+    for (let i = 0; i < users.length; i++) {
+      const user = users[i];
+      
+      // Iterate over each store of the user
+      for (let j = 0; j < user.stores.length; j++) {
+        const store = user.stores[j];
+        
+        if (store.storeName === storeName) {
+          // Increment the store's total orders
+          store.storeTotalOrders = (store.storeTotalOrders || 0) + 1;
+          storeFound = true;
+          break; // Exit the loop since the store was found
+        }
+      }
+
+      if (storeFound) {
+        // Save the updated user object
+        await user.save();
+        return res.json({ message: "Store order count incremented successfully" });
+      }
+    }
+
+    // If the store was not found among all users' stores
+    return res.status(404).json({ error: "Store not found" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+
+app.post('/api/RSVP', async (req, res) => {
+  try {
+    const { eventName } = req.body;
+    console.log(eventName)
+    if (!eventName) {
+      return res.status(400).json({ error: "Incomplete fields" });
+    }
+
+    // Find all users in the database
+    const users = await User.find({}, { events: 1 });
+
+    // Variable to track if the store was found
+    let eventFound = false;
+
+    // Iterate over each user
+    for (let i = 0; i < users.length; i++) {
+      const user = users[i];
+      
+      // Iterate over each store of the user
+      for (let j = 0; j < user.events.length; j++) {
+        const event = user.events[j];
+        
+        if (event.eventName === eventName) {
+          // Increment the store's total orders
+          event.eventRSVP = (event.eventRSVP || 0) + 1;
+          eventFound = true;
+          break; // Exit the loop since the store was found
+        }
+      }
+
+      if (eventFound) {
+        // Save the updated user object
+        await user.save();
+        return res.json({ message: "Event RSVP count incremented successfully" });
+      }
+    }
+
+    // If the store was not found among all users' stores
+    return res.status(404).json({ error: "EVENT not found" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal server error" });
   }
 });
 

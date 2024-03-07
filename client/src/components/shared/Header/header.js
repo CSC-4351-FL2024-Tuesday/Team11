@@ -23,7 +23,7 @@ function Header(props) {
         <div className="dashnavbar">
             <div className="dashlogo">
                 <div className="dashlogo_logo" onClick={navToHome}>
-                ◾ pocketplate
+                ◾ foodsaver
                 </div>
                 <div className="navs">
                 <a className="nav" href="/discover">discover</a>

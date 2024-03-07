@@ -6,10 +6,12 @@ const { Schema } = mongoose;
 // Define product schema
 const ProductSchema = new Schema({
   productName: String,
+  productPrice: Number,
   productImageUrl: String,
   productQuantity: String,
   productDescription: String,
-  productExpiry: String
+  productExpiry: String,
+  productStore: String
 });
 
 // Define store schema

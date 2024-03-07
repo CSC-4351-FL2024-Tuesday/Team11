@@ -101,7 +101,7 @@ function Dashboard(props) {
                         </div>
                         <div className="rpo_tile">
                             <div className="rpo_tile_1">
-                                {orders/7}
+                                {Math.round(orders/7, 2)}
                             </div>
                             <div className="rpo_tile_2">
                                 Average Orders/Week

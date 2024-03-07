@@ -17,10 +17,12 @@ function Edit(props) {
 
     const [productFormData, setProductFormData] = useState({
         productName: '',
+        productPrice: 0,
         productImageUrl: '',
         productQuantity: '',
         productDescription: '',
-        productExpiry: ''
+        productExpiry: '',
+        productStore: '',
     });
 
     const handleStoreChange = (e) => {
@@ -47,10 +49,12 @@ function Edit(props) {
         }));
         setProductFormData({
             productName: '',
+            productPrice: 0,
             productImageUrl: '',
             productQuantity: '',
             productDescription: '',
-            productExpiry: ''
+            productExpiry: '',
+            productStore: '',
         });
     };
 
@@ -65,7 +69,17 @@ function Edit(props) {
 
     const updateStore = async () => {
         setLoadingText("Submitting Request...")
-        console.log(storeData)
+        const storeDataNew = {
+            ...storeData,
+            storeProducts: storeData.storeProducts.map(product => ({
+                ...product,
+                productStore: storeData.storeName
+            }))
+        };
+
+        setStoreData(storeDataNew);
+
+        console.log(storeDataNew);
         props.UpdateStore(props.user.email, storeData)
         setLoadingText("Updated Store!")
     };
@@ -100,10 +114,21 @@ function Edit(props) {
                     <h2 className='subtitle' >Manage Products</h2>
                     <h4 className='subtitle_mini' >Current Products List</h4>
                     <div className='products_table'>
+                        <div className="products_table_row">
+                            <div className='product_table_dummy'>Image</div>
+                            <div className='product_table_dummy'>Name</div>
+                            <div className='product_table_dummy'>Price</div>
+                            <div className='product_table_dummy'>ImageURL</div>
+                            <div className='product_table_dummy'>Quantity</div>
+                            <div className='product_table_dummy'>Expiry</div>
+                            <div className='product_table_dummy'>Description</div>
+                            <div className='product_table_dummy'>Remove?</div>
+                        </div>
                         {storeData.storeProducts.map((product, index) => (
                             <div className="products_table_row" key={index}>
-                                <div className='product_table_image' style={{ backgroundImage:`url(${product.productImageUrl})` }}></div>
+                                <div className='product_table_image' style={{ backgroundImage: `url(${product.productImageUrl})` }}></div>
                                 <input className='product_table_name' type="text" id={`productName${index}`} name="productName" value={product.productName} onChange={(e) => handleProductChange(index, 'productName', e.target.value)} />
+                                <input className='product_table_iamgeurl' type="text" id={`imageurl${index}`} name="productPrice" value={product.productPrice} onChange={(e) => handleProductChange(index, 'productPrice', e.target.value)} />
                                 <input className='product_table_iamgeurl' type="text" id={`imageurl${index}`} name="productImageUrl" value={product.productImageUrl} onChange={(e) => handleProductChange(index, 'productImageUrl', e.target.value)} />
                                 <input className='product_table_quantity' type="text" id={`quantity${index}`} name="productQuantity" value={product.productQuantity} onChange={(e) => handleProductChange(index, 'productQuantity', e.target.value)} />
                                 <input className='product_table_expiry' type="text" id={`expiry${index}`} name="productExpiry" value={product.productExpiry} onChange={(e) => handleProductChange(index, 'productExpiry', e.target.value)} />

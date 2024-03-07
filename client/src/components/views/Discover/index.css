@@ -61,6 +61,13 @@
   color: #b69e80;
 }
 
+.loading_discover {
+font-family: 'Epilogue';
+width: 60%;
+padding: 10px 0;
+text-align: left;
+}
+
 @media only screen and (max-width: 900px) {
 
 
@@ -79,4 +86,11 @@
   .discover_searchbar {
     width: 88vw;
   }  
-}
+
+  .loading_discover {
+    font-family: 'Epilogue';
+    width: 90%;
+    padding: 10px 0;
+    text-align: left;
+    }
+    }
