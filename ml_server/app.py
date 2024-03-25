@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from openai import OpenAI
+import os
 client = OpenAI()
 
 
@@ -69,7 +70,7 @@ def getAddress():
             loc = data.get("address", "")
             import requests
 
-            api_key = 'AIzaSyD9QMP_1gywriOXtiDqPHUStgwSbBK_Fg4'  # Replace 'YOUR_API_KEY_HERE' with your actual API key
+            api_key = os.environ.get['REACT_APP_GOOGLE_MAPS_API_KEY']  # Replace 'YOUR_API_KEY_HERE' with your actual API key
             url = f'https://maps.googleapis.com/maps/api/geocode/json?address={loc}&key={api_key}'
             response = requests.get(url)
 
