@@ -208,6 +208,56 @@ app.post('/api/allStoresProductsEvents', async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+app.post('/api/updateStoreTransactions', async (req, res) => {
+  try {
+    const { storeName, productPrice } = req.body;
+    const today = new Date().toISOString().slice(0, 10);
+
+    const users = await User.find({}, { stores: 1 });
+
+    let storeFound = false;
+
+    for (let i = 0; i < users.length; i++) {
+      const user = users[i];
+
+      for (let j = 0; j < user.stores.length; j++) {
+        const store = user.stores[j];
+
+        if (store.storeName === storeName) {
+          const transaction = {
+            productPrice: productPrice,
+            date: today
+          };
+
+          let existingTransaction = store.storeTransactions.find(trans => trans.date === today);
+          if (existingTransaction) {
+            existingTransaction.productPrice += productPrice;
+            console.log(existingTransaction)
+          } else {
+            store.storeTransactions.push(transaction);
+          }
+
+          storeFound = true;
+          break; // Exit the loop since the store was found
+        }
+      }
+
+      if (storeFound) {
+        await user.save();
+        console.log('Store transactions updated successfully');
+        return res.json({ message: "Store transaction updated successfully" });
+      }
+    }
+
+    console.error('Store not found');
+    console.log(storeName);
+    return res.status(404).json({ error: "Store not found" });
+  } catch (error) {
+    console.error('Error updating store transactions:', error.message);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 
 
 app.post('/api/updateStoreRevenue', async (req, res) => {

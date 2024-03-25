@@ -155,10 +155,11 @@ function Edit(props) {
                             <label className="store_form_label" htmlFor="newProductExpiry">Product Expiry:</label>
                             <input className="store_form_input" type="text" id="newProductExpiry" name="productExpiry" value={productFormData.productExpiry} onChange={(e) => setProductFormData({ ...productFormData, productExpiry: e.target.value })} />
                         </div>
-                        <div className='store_form_second'>
-
+                        <div className='store_form_first'>
                             <label className="store_form_label" htmlFor="newProductDescription">Product Description:</label>
-                            <input className="store_form_input diff" id="newProductDescription" name="productDescription" value={productFormData.productDescription} onChange={(e) => setProductFormData({ ...productFormData, productDescription: e.target.value })} />
+                            <input className="store_form_input" id="newProductDescription" name="productDescription" value={productFormData.productDescription} onChange={(e) => setProductFormData({ ...productFormData, productDescription: e.target.value })} />
+                            <label className="store_form_label" htmlFor="newProductDescription">Product Price:</label>
+                            <input className="store_form_input" id="newProductPrice" name="productPrice" value={productFormData.productPrice} onChange={(e) => setProductFormData({ ...productFormData, productPrice: e.target.value })} />
                         </div>
 
                         <button className="add_product" type="button" onClick={addProduct}>Add Product</button>

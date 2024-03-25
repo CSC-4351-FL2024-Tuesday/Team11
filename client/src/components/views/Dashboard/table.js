@@ -30,7 +30,7 @@ export default function Table(props) {
                             <td className="table_store_data"><div>{row.storeName ? row.storeName : row.eventName}</div></td>
                         }
                         <td className="table_body_data">{row.storeLocation ? row.storeLocation : row.eventLocation}</td>
-                        <td className="table_body_data">{row.storeRevenue ? row.storeRevenue : row.eventFromDateTime}</td>
+                        <td className="table_body_data">{row.storeRevenue ? Math.round(row.storeRevenue * 100) / 100: row.eventFromDateTime}</td>
                         <td className="table_body_data">{row.storeTotalOrders ? row.storeTotalOrders : row.eventRSVP}</td>
                     </tr>
                 ))}

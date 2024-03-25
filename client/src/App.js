@@ -1,6 +1,6 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { FIND_API_URL, ADD_STORE_TO_USER_URL, GET_SORTED_URL, GET_ALL_PRODUCTS, UPDATE_STORE_URL, ADD_EVENT_TO_USER_URL, UPDATE_STORE_ORDERS_URL, UPDATE_STORE_REVENUE_URL, UPDATE_EVENT_RSVP, GET_ADDRESS } from './apiConfig';
+import { FIND_API_URL, GET_SORTED_URL, GET_ALL_PRODUCTS } from './apiConfig';
 import Home from "./components/views/Home/home";
 import Error404 from "./components/views/Error404/error404";
 import LogIn from "./components/shared/LogIn/login"
@@ -11,113 +11,13 @@ import Dashboard from './components/views/Dashboard/dashboard';
 import Create from './components/views/Create/create';
 import Create_Event from './components/views/Create Event/createEvent';
 import Edit from './components/views/Edit/edit';
+import { CreateStore, UpdateStore, UpdateStoreOrders, UpdateStoreRevenue, UpdateStoreTransactions } from './functions_store';
+import { CreateEvent, UpdateRSVP } from './functions_event';
+import { getAddress } from './functions_python';
 
 function App() {
   let [signedIn, setSignedIn] = useState(false)
   let [user, setUser] = useState({ name: '', email: '' })
-
-  let [newUser, setNewUser] = useState({
-    name: '',
-    email: '',
-    stores: [
-      {
-        storeName: 'Delicious Diner',
-        storeLocation: 'Location',
-        storeImageUrl: 'https://example.com/store-image.jpg',
-        storeTagline: 'Best Diner in Town',
-        storeDescription: 'Description of Delicious Diner',
-        storeProducts: [
-          {
-            productName: "Pizza",
-            productImageUrl: "https://t3.ftcdn.net/jpg/00/27/57/96/360_F_27579652_tM7V4fZBBw8RLmZo0Bi8WhtO2EosTRFD.jpg",
-            productQuantity: 1, // Adding one item to the store
-            productDescription: "Delicious Diner",
-            productExpiry: "https://example.com/delicious-diner"
-          }
-        ],
-        storeTransactions: [],
-        storeRevenue: 0,
-        storeTotalOrders: 0
-      },
-      {
-        storeName: 'Tasty Tacos',
-        storeLocation: 'Location',
-        storeImageUrl: 'https://example.com/store-image.jpg',
-        storeTagline: 'Best Tacos in Town',
-        storeDescription: 'Description of Tasty Tacos',
-        storeProducts: [
-          {
-            productName: "Tacos",
-            productImageUrl: "https://www.onceuponachef.com/images/2023/08/Beef-Tacos.jpg",
-            productQuantity: 1,
-            productDescription: "Tasty Tacos",
-            productExpiry: "https://example.com/tasty-tacos"
-          }
-        ],
-        storeTransactions: [],
-        storeRevenue: 0,
-        storeTotalOrders: 0
-      },
-      {
-        storeName: 'Pizza Paradise',
-        storeLocation: 'Location',
-        storeImageUrl: 'https://example.com/store-image.jpg',
-        storeTagline: 'Best Pizza in Town',
-        storeDescription: 'Description of Pizza Paradise',
-        storeProducts: [
-          {
-            productName: "Calzones",
-            productImageUrl: "https://mojo.generalmills.com/api/public/content/VNG1nkum9UuY9aJqRLDhJQ_gmi_hi_res_jpeg.jpeg?v=c144ea76&t=466b54bb264e48b199fc8e83ef1136b4",
-            productQuantity: 1,
-            productDescription: "Pizza Paradise",
-            productExpiry: "https://example.com/pizza-paradise"
-          }
-        ],
-        storeTransactions: [],
-        storeRevenue: 0,
-        storeTotalOrders: 0
-      },
-      {
-        storeName: 'Indian Palace',
-        storeLocation: 'Location',
-        storeImageUrl: 'https://example.com/store-image.jpg',
-        storeTagline: 'Best Indian Food in Town',
-        storeDescription: 'Description of Indian Palace',
-        storeProducts: [
-          {
-            productName: "Chicken Tikka Masala",
-            productImageUrl: "https://hips.hearstapps.com/hmg-prod/images/chicken-tikka-masala1-1663341991.jpg?crop=0.683xw:1.00xh;0.221xw,0&resize=1200:*",
-            productQuantity: 1,
-            productDescription: "Chicken Tikka Masala",
-            productExpiry: "https://example.com/indian-palace"
-          }
-        ],
-        storeTransactions: [],
-        storeRevenue: 0,
-        storeTotalOrders: 0
-      },
-      {
-        storeName: 'The Deli',
-        storeLocation: 'Location',
-        storeImageUrl: 'https://example.com/store-image.jpg',
-        storeTagline: 'Best Sandwiches in Town',
-        storeDescription: 'Description of The Deli',
-        storeProducts: [
-          {
-            productName: "Sandwiches",
-            productImageUrl: "https://hips.hearstapps.com/hmg-prod/images/italian-sandwich-recipe-2-1674500643.jpg?crop=0.8888888888888888xw:1xh;center,top&resize=1200:*",
-            productQuantity: 1,
-            productDescription: "Sandwiches",
-            productExpiry: "https://example.com/the-deli"
-          }
-        ],
-        storeTransactions: [],
-        storeRevenue: 0,
-        storeTotalOrders: 0
-      }
-    ]
-  });
-
 
   let [foodNearMe, setFoodNearMe] = useState([{ imageUrl: '', title: '', subtitle: '', storeUrl: '' }, { imageUrl: '', title: '', subtitle: '', storeUrl: '' }, { imageUrl: '', title: '', subtitle: '', storeUrl: '' }, { imageUrl: '', title: '', subtitle: '', storeUrl: '' }, { imageUrl: '', title: '', subtitle: '', storeUrl: '' }])
   let [storesNearMe, setStoresNearMe] = useState([{ imageUrl: '', title: '', subtitle: '', storeUrl: '' }, { imageUrl: '', title: '', subtitle: '', storeUrl: '' }, { imageUrl: '', title: '', subtitle: '', storeUrl: '' }, { imageUrl: '', title: '', subtitle: '', storeUrl: '' }, { imageUrl: '', title: '', subtitle: '', storeUrl: '' }])
@@ -221,77 +121,7 @@ function App() {
     setIsLogInOpen(false);
   };
 
-  async function CreateStore(email, storeData) {
-    try {
-      const response = await fetch(ADD_STORE_TO_USER_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: email,
-          storeData: storeData,
-        }),
-      });
 
-      if (!response.ok) {
-        throw new Error('Failed to add store');
-      }
-
-      console.log('Store added successfully');
-    } catch (error) {
-      console.error('Error adding store:', error.message);
-    }
-
-  }
-
-  async function UpdateStore(email, storeData) {
-    try {
-      const response = await fetch(UPDATE_STORE_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: email,
-          storeData: storeData,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to add store');
-      }
-
-      console.log('Store added successfully');
-    } catch (error) {
-      console.error('Error adding store:', error.message);
-    }
-
-  }
-
-  async function CreateEvent(email, eventData) {
-    try {
-      const response = await fetch(ADD_EVENT_TO_USER_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: email,
-          eventData: eventData,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to add store');
-      }
-
-      console.log('Store added successfully');
-    } catch (error) {
-      console.error('Error adding store:', error.message);
-    }
-
-  }
 
   async function getSortedProductsEventsStores(query) {
     let response = await fetch(GET_SORTED_URL, {
@@ -341,108 +171,12 @@ function App() {
   }
 
 
-  async function UpdateStoreRevenue(storeName, revenue_to_add) {
-    try {
-      const response = await fetch(UPDATE_STORE_REVENUE_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          storeName: storeName,
-          revenue_to_add: revenue_to_add,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to add store revenue');
-      }
-
-      console.log('Store revenue added successfully');
-    } catch (error) {
-      console.error('Error adding store revenue:', error.message);
-    }
-
-  }
-
-  async function UpdateStoreOrders(storeName) {
-    try {
-      console.log("ABRACADA")
-      const response = await fetch(UPDATE_STORE_ORDERS_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          storeName: storeName,
-        }),
-      });
-
-      console.log("res")
-      if (!response.ok) {
-        throw new Error('Failed to add store order');
-      }
-
-      console.log('Store order added successfully');
-    } catch (error) {
-      console.error('Error adding store revenue:', error.message);
-    }
-
-  }
-
-  async function UpdateRSVP(eventName) {
-    try {
-      console.log("ABRACADA")
-      const response = await fetch(UPDATE_EVENT_RSVP, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          eventName: eventName,
-        }),
-      });
-
-      console.log("res")
-      if (!response.ok) {
-        throw new Error('Failed to add event rsvp');
-      }
-
-      console.log('rsvp added successfully');
-    } catch (error) {
-      console.error('Error adding store revenue:', error.message);
-    }
-
-  }
-
-
-  async function getAddress(address) {
-    let response = await fetch(GET_ADDRESS, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        address: address
-      }),
-      method: 'POST',
-    })
-    if (response.ok) {
-      const responseData = await response.json(); // Parse the response as JSON
-      const aiResponseString = responseData.ai_response; // Get the nested string representation
-
-      return aiResponseString
-    } else {
-      console.error('Failed to fetch data');
-    }
-  }
-
-
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home UpdateRSVP={UpdateRSVP} UpdateStoreOrders={UpdateStoreOrders} UpdateStoreRevenue={UpdateStoreRevenue} user={user} food={foodNearMe} stores={storesNearMe} events={eventsNearMe} openSignUp={openSignUp} closeSignUp={closeSignUp} openLogIn={openLogIn} closeLogIn={closeLogIn} signedIn={signedIn} setSignedIn={setSignedIn} />} />
-          <Route path="/discover" element={<Discover UpdateRSVP={UpdateRSVP} UpdateStoreOrders={UpdateStoreOrders} UpdateStoreRevenue={UpdateStoreRevenue} getSortedProductsEventsStores={getSortedProductsEventsStores} user={user} food={foodNearMe} stores={storesNearMe} events={eventsNearMe} openSignUp={openSignUp} closeSignUp={closeSignUp} openLogIn={openLogIn} closeLogIn={closeLogIn} signedIn={signedIn} setSignedIn={setSignedIn} />} />
+          <Route path="/" element={<Home UpdateStoreTransactions={UpdateStoreTransactions} UpdateRSVP={UpdateRSVP} UpdateStoreOrders={UpdateStoreOrders} UpdateStoreRevenue={UpdateStoreRevenue} user={user} food={foodNearMe} stores={storesNearMe} events={eventsNearMe} openSignUp={openSignUp} closeSignUp={closeSignUp} openLogIn={openLogIn} closeLogIn={closeLogIn} signedIn={signedIn} setSignedIn={setSignedIn} />} />
+          <Route path="/discover" element={<Discover UpdateStoreTransactions={UpdateStoreTransactions} UpdateRSVP={UpdateRSVP} UpdateStoreOrders={UpdateStoreOrders} UpdateStoreRevenue={UpdateStoreRevenue} getSortedProductsEventsStores={getSortedProductsEventsStores} user={user} food={foodNearMe} stores={storesNearMe} events={eventsNearMe} openSignUp={openSignUp} closeSignUp={closeSignUp} openLogIn={openLogIn} closeLogIn={closeLogIn} signedIn={signedIn} setSignedIn={setSignedIn} />} />
           <Route path="/map" element={<Map getAddress={getAddress} user={user} food={foodNearMe} stores={storesNearMe} events={eventsNearMe} openSignUp={openSignUp} closeSignUp={closeSignUp} openLogIn={openLogIn} closeLogIn={closeLogIn} signedIn={signedIn} setSignedIn={setSignedIn} />} />
           {signedIn ?
             <>

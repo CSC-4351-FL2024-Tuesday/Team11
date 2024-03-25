@@ -9,7 +9,7 @@ function Dashboard(props) {
     const [revenue, setRevenue] = useState(0)
     const [orders, setOrders] = useState(0)
     const [eventData, setEventData] = useState({});
-
+    const [transactions, setTransactions] = useState([]);
     function openCreateStore() {
         window.location = "/create";
     }
@@ -17,27 +17,6 @@ function Dashboard(props) {
     function openCreateEvent() {
         window.location = "/createEvent";
     }
-
-    const generateDummyData = () => {
-        const dummyData = [];
-        let r = 0
-        let o = 0
-        for (let i = 0; i < 3; i++) {
-            let dumR = Math.floor(Math.random() * 1000)
-            let dumO = Math.floor(Math.random() * 100)
-            r += dumR
-            o += dumO
-            dummyData.push({
-                store: <div className="table_store_name">Store {i + 1}</div>,
-                location: `Location ${i + 1}`,
-                revenue: dumR,
-                orders: dumO,
-            });
-        }
-        setStoreData(dummyData);
-        setRevenue(r)
-        setOrders(o)
-    };
 
     useEffect(() => {
         setStoreData(props.user.stores)
@@ -48,6 +27,8 @@ function Dashboard(props) {
             for (let i = 0; i < props.user.stores.length ; i++) {
                 r += props.user.stores[i]['storeRevenue']
                 o += props.user.stores[i]['storeTotalOrders']
+                console.log("ABS")
+                console.log(props.user.stores[i]['storeTransactions'])
             }
             setRevenue(r)
             setOrders(o)
@@ -82,10 +63,11 @@ function Dashboard(props) {
                         </div>
                         </div>
                     </div>
+                    {transactions}
                     <div className="revenue_profit_orders">
                         <div className="rpo_tile">
                             <div className="rpo_tile_1">
-                                ${revenue}
+                                ${Math.round(revenue * 100) / 100}
                             </div>
                             <div className="rpo_tile_2">
                                 Total Revenue
@@ -101,7 +83,7 @@ function Dashboard(props) {
                         </div>
                         <div className="rpo_tile">
                             <div className="rpo_tile_1">
-                                {Math.round(orders/7, 2)}
+                                {Math.round((orders/7) * 100) / 100}
                             </div>
                             <div className="rpo_tile_2">
                                 Average Orders/Week

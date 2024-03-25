@@ -16,6 +16,13 @@ function Discover(props) {
                 setDebug_Message("Processing...")
                 props.UpdateStoreOrders(props.product.productStore)
                 props.UpdateStoreRevenue(props.product.productStore, props.product.productPrice)
+                const currentDate = new Date();
+                const year = currentDate.getFullYear();
+                const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Month is zero-based
+                const day = String(currentDate.getDate()).padStart(2, '0');
+                
+                const formattedDate = `${year}-${month}-${day}`;
+                props.UpdateStoreTransactions(props.product.productStore, props.product.productPrice, formattedDate)
                 setE("e")
                 setDebug_Message("💖")
             }
@@ -101,7 +108,7 @@ function Discover(props) {
                                 </div>
                                 {item.productImageUrl ? <>
                                     <div className="like">
-                                        <LikeButton msg={"Order"} type={"food"} product={item} UpdateStoreOrders={props.UpdateStoreOrders} UpdateStoreRevenue={props.UpdateStoreRevenue} />
+                                    <LikeButton msg={"Order"} type={"food"} product={item} UpdateStoreTransactions={props.UpdateStoreTransactions} UpdateStoreOrders={props.UpdateStoreOrders} UpdateStoreRevenue={props.UpdateStoreRevenue} />
                                     </div>
                                 </> : <>
                                 </>}

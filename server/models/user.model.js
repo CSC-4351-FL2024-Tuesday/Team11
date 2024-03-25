@@ -14,15 +14,21 @@ const ProductSchema = new Schema({
   productStore: String
 });
 
-// Define store schema
+// Define transaction schema
+const TransactionSchema = new Schema({
+  productPrice: Number,
+  date: String // Consider using Date type if handling dates
+});
+
+// Update store schema to include transaction schema
 const StoreSchema = new Schema({
   storeName: String,
   storeLocation: String,
   storeImageUrl: String,
   storeTagline: String,
   storeDescription: String,
-  storeProducts: [ProductSchema], // Array of ProductSchema
-  storeTransactions: [],         // This can be defined based on your transaction schema
+  storeProducts: [ProductSchema],
+  storeTransactions: [TransactionSchema], // Array of TransactionSchema
   storeRevenue: Number,
   storeTotalOrders: Number
 });

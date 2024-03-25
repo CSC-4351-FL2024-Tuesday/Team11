@@ -92,9 +92,6 @@ function Map(props) {
                             )})}
                         </div>
                     </div>
-                    <div className="all_filters">
-                        filter...
-                    </div>
                 </div>
             </div>
         </div>
